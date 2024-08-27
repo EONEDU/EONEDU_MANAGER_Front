@@ -1,16 +1,19 @@
 import React from 'react'
 import { 
     List,
-    Edit,
     Create,
+    Show,
     SimpleForm,
+    SimpleShowLayout,
     Datagrid,
-    TextInput,
+    DateField,
     TextField,
     DateInput,
+    TextInput,
     ReferenceInput,
     SelectInput,
-    Filter
+    Filter,
+    DeleteButton
 } from 'react-admin'
 
 const ReservationFilter = (props: any) => (
@@ -46,19 +49,13 @@ const timeChoices = [
     { id: '21:30', name: '21:30' },
 ];
 
-const stateChoices = [
-    { id: 'WAITING', name: '대기중' },
-    { id: 'CONFIRMED', name: '승인됨' },
-    { id: 'CANCELED', name: '취소됨' },
-];
-
 export const ReservationList = (props: any) => (
     <List filters={<ReservationFilter />} {...props}>
-        <Datagrid rowClick="edit">
+        <Datagrid rowClick="show">
             <TextField source="id" label="예약 ID" />
             <TextField source="title" label="제목" />
-            <TextField source="date" label="날짜" />
-            <TextField source="time" label="시간" />
+            <DateField source="date" label="날짜" />
+            <DateField source="time" label="시간" />
             <TextField source="branchName" label="지점" />
             <TextField source="type" label="유형" />
             <TextField source="clientName" label="고객 이름" />
@@ -67,6 +64,7 @@ export const ReservationList = (props: any) => (
             <TextField source="state" label="상태" />
             <TextField source="adminName" label="관리자 이름" />
             <TextField source="adminReason" label="관리자 사유" />
+            <DeleteButton />
         </Datagrid>
     </List>
 )
@@ -88,10 +86,21 @@ export const ReservationCreate = (props: any) => (
     </Create>
 );
 
-export const ReservationEdit = (props: any) => (
-    <Edit {...props}>
-        <SimpleForm>
-            <SelectInput source="state" choices={stateChoices} label="상태" />
-        </SimpleForm>
-    </Edit>
+export const ReservationShow = (props: any) => (
+    <Show {...props}>
+        <SimpleShowLayout>
+            <TextField source="id" label="예약 ID" />
+            <TextField source="title" label="제목" />
+            <TextField source="date" label="날짜" />
+            <TextField source="time" label="시간" />
+            <TextField source="branchName" label="지점" />
+            <TextField source="type" label="유형" />
+            <TextField source="clientName" label="고객 이름" />
+            <TextField source="clientPhone" label="고객 전화번호" />
+            <TextField source="counselTypeName" label="상담 유형" />
+            <TextField source="state" label="상태" />
+            <TextField source="adminName" label="관리자 이름" />
+            <TextField source="adminReason" label="관리자 사유" />
+        </SimpleShowLayout>
+    </Show>
 );

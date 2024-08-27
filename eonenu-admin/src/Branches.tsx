@@ -2,7 +2,9 @@ import React from 'react'
 import {
     List,
     Create,
+    Show,
     SimpleForm,
+    SimpleShowLayout,
     TextInput,
     Datagrid,
     TextField
@@ -10,7 +12,7 @@ import {
 
 export const BranchList = (props: any) => (
     <List {...props}>
-        <Datagrid rowClick="edit">
+        <Datagrid rowClick="show">
             <TextField source="id" label="지점 ID" />
             <TextField source="name" label="이름" />
         </Datagrid>
@@ -23,4 +25,13 @@ export const BranchCreate = (props: any) => (
             <TextInput source="name" label="지점 이름" />
         </SimpleForm>
     </Create>
+);
+
+export const BranchShow = (props: any) => (
+    <Show {...props}>
+        <SimpleShowLayout>
+            <TextField source="id" label="지점 ID" />
+            <TextField source="name" label="지점 이름" />
+        </SimpleShowLayout>
+    </Show>
 );
